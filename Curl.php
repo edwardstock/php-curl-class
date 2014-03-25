@@ -35,6 +35,7 @@ class Curl
 	private $multiParent = false;
 	private $multiChild = false;
 	private $eventName;
+	private $data = array();
 
 	/**
 	 * @var Callable
@@ -92,6 +93,8 @@ class Curl
 	}
 
 	public function get($urlMixed, $data = array()) {
+		$this->data = $data;
+
 		if ( is_array($urlMixed) ) {
 			$curlMulti = curl_multi_init();
 			$this->multiParent = true;
@@ -196,15 +199,15 @@ class Curl
 		$ch->errorMessage = $ch->curlError ? $ch->curlErrorMessage : $ch->httpErrorMessage;
 
 		if ( $ch->error ) {
-			$ch->call($this->errorCallback, $ch);
+			$ch->call($this->errorCallback, $ch, $this->data);
 			$this->eventName = 'error';
 		} else {
-			$ch->call($this->successCallback, $ch);
+			$ch->call($this->successCallback, $ch, $this->data);
 			$this->eventName = 'success';
 		}
 
 
-		$ch->call($this->completeCallback, $ch);
+		$ch->call($this->completeCallback, $ch, $this->data);
 		$this->eventName = 'complete';
 
 		return $ch->errorCode;
@@ -251,6 +254,7 @@ class Curl
 	}
 
 	public function post($url, $data = array()) {
+		$this->data = $data;
 		$this->setOpt(CURLOPT_URL, $this->buildURL($url));
 		$this->setOpt(CURLOPT_CUSTOMREQUEST, 'POST');
 		$this->setOpt(CURLOPT_POST, true);
@@ -286,6 +290,7 @@ class Curl
 	}
 
 	public function put($url, $data = array()) {
+		$this->data = $data;
 		$this->setOpt(CURLOPT_URL, $url);
 		$this->setOpt(CURLOPT_CUSTOMREQUEST, 'PUT');
 		$this->setOpt(CURLOPT_POSTFIELDS, http_build_query($data));
@@ -294,6 +299,7 @@ class Curl
 	}
 
 	public function patch($url, $data = array()) {
+		$this->data = $data;
 		$this->setOpt(CURLOPT_URL, $this->buildURL($url));
 		$this->setOpt(CURLOPT_CUSTOMREQUEST, 'PATCH');
 		$this->setOpt(CURLOPT_POSTFIELDS, $data);
@@ -302,6 +308,7 @@ class Curl
 	}
 
 	public function delete($url, $data = array()) {
+		$this->data = $data;
 		$this->setOpt(CURLOPT_URL, $this->buildURL($url, $data));
 		$this->setOpt(CURLOPT_CUSTOMREQUEST, 'DELETE');
 
@@ -335,10 +342,6 @@ class Curl
 		$this->setOpt(CURLOPT_COOKIEJAR, $cookie_jar);
 	}
 
-	public function getEventName() {
-		return $this->eventName;
-	}
-
 	public function verbose($on = true) {
 		$this->setOpt(CURLOPT_VERBOSE, $on);
 	}
@@ -357,6 +360,10 @@ class Curl
 
 	public function complete($callback) {
 		$this->completeCallback = $callback;
+	}
+
+	public function getEventName() {
+		return $this->eventName;
 	}
 
 	public function __destruct() {
