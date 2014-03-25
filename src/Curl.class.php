@@ -4,6 +4,10 @@ class Curl
 {
     const USER_AGENT = 'PHP-Curl-Class/1.0 (+https://github.com/php-curl-class/php-curl-class)';
 
+	const EVENT_ERROR = 'error';
+	const EVENT_SUCCESS = 'success';
+	const EVENT_COMPLETE = 'complete';
+
     private $cookies = array();
     private $headers = array();
     private $options = array();
@@ -14,6 +18,7 @@ class Curl
     private $success_function = null;
     private $error_function = null;
     private $complete_function = null;
+	private $_eventName = null;
 
     public $curl;
     public $curls;
@@ -179,6 +184,11 @@ class Curl
         return curl_setopt($ch, $option, $value);
     }
 
+	public function getEventName()
+	{
+		return $this->_eventName;
+	}
+
     public function verbose($on = true)
     {
         $this->setOpt(CURLOPT_VERBOSE, $on);
@@ -335,13 +345,17 @@ class Curl
         }
         $ch->error_message = $ch->curl_error ? $ch->curl_error_message : $ch->http_error_message;
 
-        if (!$ch->error) {
-            $ch->call($this->success_function, $ch);
-        } else {
-            $ch->call($this->error_function, $ch);
-        }
+	    if($ch->error) {
+		    $ch->call($this->error_function, $ch);
+		    $this->_eventName = 'error';
+	    } else {
+		    $ch->call($this->success_function, $ch);
+		    $this->_eventName = 'success';
+	    }
+
 
         $ch->call($this->complete_function, $ch);
+	    $this->_eventName = 'complete';
 
         return $ch->error_code;
     }
