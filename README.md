@@ -1,6 +1,6 @@
 # php-curl-class
 
-[![Build Status](https://travis-ci.org/php-curl-class/php-curl-class.png?branch=master)](https://travis-ci.org/php-curl-class/php-curl-class)
+[![Build Status](https://travis-ci.org/edwardstock/php-curl-class.png?branch=master)](https://travis-ci.org/edwardstock/php-curl-class)
 
 PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.
 
