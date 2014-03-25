@@ -1,7 +1,7 @@
 <?php
 // Usage: phpunit --verbose run.php
 
-require '../src/Curl.class.php';
+require '/../../Curl.php';
 require 'helper.inc.php';
 
 
@@ -271,7 +271,7 @@ class CurlTest extends PHPUnit_Framework_TestCase {
 
     public function testErrorMessage() {
         $test = new Test();
-        $test->server('error_message', 'GET');
+        $test->server('errorMessage', 'GET');
         $this->assertTrue($test->curl->error_message === 'HTTP/1.1 401 Unauthorized');
     }
 

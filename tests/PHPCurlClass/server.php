@@ -99,7 +99,7 @@ else if ($test === 'json_response') {
     ));
     exit;
 }
-else if ($test === 'error_message') {
+else if ($test === 'errorMessage') {
     if (function_exists('http_response_code')) {
         http_response_code(401);
     }

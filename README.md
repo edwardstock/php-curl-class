@@ -42,14 +42,14 @@ $curl->setCookie('key', 'value');
 $curl->get('http://www.example.com/');
 
 if ($curl->error) {
-    echo $curl->error_code;
+    echo $curl->errorCode;
 }
 else {
     echo $curl->response;
 }
 
-var_dump($curl->request_headers);
-var_dump($curl->response_headers);
+var_dump($curl->requestHeaders);
+var_dump($curl->responseHeaders);
 ```
 
 ```php
@@ -108,8 +108,8 @@ $curl->success(function($instance) {
 });
 $curl->error(function($instance) {
     echo 'call was unsuccessful.' . "\n";
-    echo 'error code:' . $instance->error_code . "\n";
-    echo 'error message:' . $instance->error_message . "\n";
+    echo 'error code:' . $instance->errorCode . "\n";
+    echo 'error message:' . $instance->errorMessage . "\n";
 });
 $curl->complete(function($instance) {
     echo 'call completed' . "\n";
