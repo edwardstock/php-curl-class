@@ -36,6 +36,7 @@ class Curl
 	private $multiChild = false;
 	private $eventName;
 	private $data = array();
+	private $context;
 
 	/**
 	 * @var Callable
@@ -58,11 +59,12 @@ class Curl
 	private $completeCallback;
 
 
-	public function __construct() {
+	public function __construct($context = null) {
 		if ( !extension_loaded('curl') ) {
 			throw new \ErrorException('cURL library is not loaded');
 		}
 
+		$this->context = $context;
 		$this->curl = curl_init();
 		$this->setUserAgent(self::USER_AGENT);
 		$this->setOpt(CURLINFO_HEADER_OUT, true);
@@ -199,15 +201,15 @@ class Curl
 		$ch->errorMessage = $ch->curlError ? $ch->curlErrorMessage : $ch->httpErrorMessage;
 
 		if ( $ch->error ) {
-			$ch->call($this->errorCallback, $ch, $this->data);
+			$ch->call($this->errorCallback, $ch, $this->data, $this->context);
 			$this->eventName = 'error';
 		} else {
-			$ch->call($this->successCallback, $ch, $this->data);
+			$ch->call($this->successCallback, $ch, $this->data, $this->context);
 			$this->eventName = 'success';
 		}
 
 
-		$ch->call($this->completeCallback, $ch, $this->data);
+		$ch->call($this->completeCallback, $ch, $this->data, $this->context);
 		$this->eventName = 'complete';
 
 		return $ch->errorCode;
