@@ -348,19 +348,19 @@ class Curl
 		$this->setOpt(CURLOPT_VERBOSE, $on);
 	}
 
-	public function beforeSend($function) {
+	public function onBeforeSend($function) {
 		$this->beforeSendCallback = $function;
 	}
 
-	public function success($callback) {
+	public function onSuccess($callback) {
 		$this->successCallback = $callback;
 	}
 
-	public function error($callback) {
+	public function onError($callback) {
 		$this->errorCallback = $callback;
 	}
 
-	public function complete($callback) {
+	public function onComplete($callback) {
 		$this->completeCallback = $callback;
 	}
 
