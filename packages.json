@@ -1,0 +1,11 @@
+{
+	"package": {
+		"name": "edwardstock/php-curl-class",
+		"version": "1.0.2",
+		"source": {
+			"url": "https://github.com/edwardstock/php-curl-class",
+			"type": "git",
+			"reference": "master"
+		}
+	}
+}
