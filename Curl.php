@@ -1,5 +1,7 @@
 <?php
 
+namespace edwardstock\curl;
+
 class Curl
 {
     const USER_AGENT = 'PHP-Curl-Class/1.0 (+https://github.com/php-curl-class/php-curl-class)';
