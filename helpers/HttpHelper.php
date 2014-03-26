@@ -6,7 +6,7 @@
  * Class: HttpHelper
  */
 
-namespace edwardstock\curl\helpers;
+namespace EdwardStock\Curl\Helpers;
 
 
 class HttpHelper

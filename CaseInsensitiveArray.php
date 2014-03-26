@@ -6,7 +6,7 @@
  * Class: CaseInsensitiveArray
  */
 
-namespace edwardstock\curl;
+namespace EdwardStock\Curl;
 
 
 class CaseInsensitiveArray implements \ArrayAccess, \Countable, \Iterator

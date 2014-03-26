@@ -1,6 +1,6 @@
 <?php
 
-namespace edwardstock\curl;
+namespace EdwardStock\Curl;
 
 class Curl
 {
@@ -13,7 +13,7 @@ class Curl
 	 */
 	public $curl;
 	/**
-	 * @var \edwardstock\curl\Curl[]
+	 * @var \EdwardStock\Curl\Curl[]
 	 */
 	public $curls;
 	public $error = false;

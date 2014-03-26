@@ -6,7 +6,7 @@
  * Class: ArrayHelper
  */
 
-namespace edwardstock\curl\helpers;
+namespace EdwardStock\Curl\Helpers;
 
 
 class ArrayHelper
