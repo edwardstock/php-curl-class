@@ -7,6 +7,7 @@ use EdwardStock\Curl\Helpers\CaseInsensitiveArray;
 class Curl
 {
 
+
 	const USER_AGENT     = 'PHP-Curl-Class/1.0 (+https://github.com/php-curl-class/php-curl-class)';
 	const EVENT_ERROR    = 'error';
 	const EVENT_SUCCESS  = 'success';
