@@ -6,19 +6,20 @@
  * Class: CaseInsensitiveArray
  */
 
-namespace EdwardStock\Curl;
+namespace EdwardStock\Curl\Helpers;
 
 
 class CaseInsensitiveArray implements \ArrayAccess, \Countable, \Iterator
 {
-	private $container = array();
+
+	private $container = [];
 
 	public function offsetSet($offset, $value) {
-		if ( is_null($offset) ) {
+		if (is_null($offset)) {
 			$this->container[] = $value;
 		} else {
 			$index = array_search(strtolower($offset), array_keys(array_change_key_case($this->container, CASE_LOWER)));
-			if ( !($index === false) ) {
+			if (!($index === false)) {
 				unset($this->container[array_keys($this->container)[$index]]);
 			}
 			$this->container[$offset] = $value;

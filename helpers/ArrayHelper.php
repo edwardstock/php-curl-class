@@ -16,7 +16,7 @@ class ArrayHelper
 		return (bool)count(array_filter(array_keys($array), 'is_string'));
 	}
 
-	public static function isArrayMultidim($array) {
+	public static function isMultidimensional($array) {
 		if ( !is_array($array) ) {
 			return false;
 		}
