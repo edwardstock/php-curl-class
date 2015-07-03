@@ -162,7 +162,7 @@ class Curl
 
 	protected function exec($_ch = null) {
 		/** @var Curl $ch */
-		$ch = $ch === null ? $this : $_ch;
+		$ch = $_ch === null ? $this : $_ch;
 
 		if ($ch->multiChild) {
 			$ch->response = curl_multi_getcontent($ch->curl);
