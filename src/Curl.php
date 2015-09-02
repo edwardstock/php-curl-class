@@ -160,6 +160,10 @@ class Curl
 		}
 	}
 
+	/**
+	 * @param Curl|null $_ch
+	 * @return int|mixed
+	 */
 	protected function exec($_ch = null) {
 		/** @var Curl $ch */
 		$ch = $_ch === null ? $this : $_ch;
@@ -220,9 +224,9 @@ class Curl
 		return $ch->errorCode;
 	}
 
-	private function parseRequestHeaders($raw_headers) {
+	private function parseRequestHeaders($rawHeaders) {
 		$requestHeaders = new CaseInsensitiveArray();
-		list($firstLine, $headers) = $this->parseHeaders($raw_headers);
+		list($firstLine, $headers) = $this->parseHeaders($rawHeaders);
 		$requestHeaders['Request-Line'] = $firstLine;
 		foreach ($headers as $key => $value) {
 			$requestHeaders[$key] = $value;
@@ -387,5 +391,15 @@ class Curl
 		if (is_resource($this->curl)) {
 			curl_close($this->curl);
 		}
+	}
+
+	/**
+	 * TRUE для автоматической установки поля Referer: в запросах, перенаправленных заголовком Location:
+	 * @param bool $bool
+	 * @return $this
+	 */
+	public function setAutoReferer($bool) {
+		$this->setOption(CURLOPT_AUTOREFERER, $bool);
+		return $this;
 	}
 }

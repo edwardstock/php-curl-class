@@ -1,11 +1,10 @@
 {
     "name": "edwardstock/php-curl-class",
-	"version": "1.0.2",
+	"version": "1.0.4",
     "description": "PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.",
 	"autoload": {
 		"psr-4": {
-			"EdwardStock\\Curl\\": "",
-			"EdwardStock\\Curl\\Helpers\\": ""
+			"EdwardStock\\Curl\\": "src/"
 		}
 	},
 	"repository" : {
@@ -13,9 +12,7 @@
 		"url" : "https://github.com/edwardstock/php-curl-class.git"
 	},
 	"authors": [
-
 		{
-			"role" : "forker",
 			"name": "Eduard Maksimovich",
 			"email": "edward.vstock@gmail.com"
 		}
