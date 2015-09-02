@@ -1,6 +1,6 @@
 {
     "name": "edwardstock/php-curl-class",
-	"version": "1.0.4",
+	"version": "1.0.5",
     "description": "PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.",
 	"autoload": {
 		"psr-4": {
