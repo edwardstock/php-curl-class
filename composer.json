@@ -4,7 +4,8 @@
     "description": "PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.",
 	"autoload": {
 		"psr-4": {
-			"EdwardStock\\Curl\\": "src/"
+			"EdwardStock\\Curl\\": "src/",
+            "EdwardStock\\Curl\\Helpers\\": "src/helpers/"
 		}
 	},
 	"repository" : {
